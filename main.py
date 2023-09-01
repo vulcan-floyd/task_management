@@ -28,7 +28,6 @@ def init_api(application):
     swagger.init_app(application)
     for path, blueprint, url_prefix in blueprints:
         module = importlib.import_module(path)
-        print(module, blueprint)
         application.register_blueprint(
             getattr(module, blueprint), url_prefix=url_prefix)
         

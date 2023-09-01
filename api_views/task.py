@@ -55,8 +55,9 @@ def taskViewId(task_id):
 @api_task_blueprint.route('/tasks', methods=['GET'])
 @token_required
 def taskView():
+    c = current_app.config
     page = int(request.args.get('page', 1))
-    count = int(request.args.get('count', 2))
+    count = int(request.args.get('count', int(c['TASKS_PER_PAGE'])))
     data = getTask(page, count)
     
     if len(data) == 0:
@@ -83,11 +84,10 @@ def taskFilterView():
 @api_task_blueprint.route('/sort/tasks', methods=['GET'])
 @token_required
 def taskSortedView():
+    c = current_app.config
     sort_by = request.args.get('sort_by', 'id')
     page = int(request.args.get('page', 1))
-    count = int(request.args.get('count', 2))
-    # date = dueDate.split('-')
-    # dueDate = datetime(int(date[0]), int(date[1]),int(date[2]))
+    count = int(request.args.get('count', int(c['TASKS_PER_PAGE'])))
     data = getSortTask(sort_by, page, count)
     
     if len(data) == 0:
