@@ -26,7 +26,6 @@ def init_api(application):
         
     application.url_map.strict_slashes = False
     swagger.init_app(application)
-    print(blueprints)
     for path, blueprint, url_prefix in blueprints:
         module = importlib.import_module(path)
         print(module, blueprint)

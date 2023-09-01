@@ -14,8 +14,6 @@ def token_required(f):
         if not token:
             return jsonify({'message' : 'Token is missing !!'}), 401
 
-        print(jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256']))
-
         try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])

@@ -52,7 +52,7 @@ def test_taskViewId_Not_Task(test_client):
 def test_taskFilterView(test_client):
     params = {
         "client"                :   test_client,
-        "url"                   :   f"{BASE_URL}/filter/tasks?",
+        "url"                   :   f"{BASE_URL}/filter/tasks",
         "expected_status_code"  :   SUCCESS_STATUS_CODE,
         "query_string"          :   {'status': 'InProgress'},
         "expected_data"         :   {"tasks": [{"id": 1,
@@ -87,4 +87,40 @@ def test_createTask(test_client):
         "expected_data"         :   {"data": 'Dummy'},
     }
     TestRequest.post(params)
+    
+def test_taskSortedView_ByTitle(test_client):
+    params = {
+        "client"                :   test_client,
+        "url"                   :   f"{BASE_URL}/sort/tasks",
+        "expected_status_code"  :   SUCCESS_STATUS_CODE,
+        "query_string"          :   {'sort_by': 'title'},
+        "expected_data"         :   {"tasks": [{"id": 3,
+                                               "status": "NotPicked",
+                                               "title": "Algebra"
+                                               },
+                                                {"id": 4,
+                                                 "status": "NotPicked",
+                                                 "title": "Calculus"
+                                                }]
+                                    }
+    }
+    TestRequest.get(params)
+   
+def test_taskSortedView_ById(test_client):
+    params = {
+        "client"                :   test_client,
+        "url"                   :   f"{BASE_URL}/sort/tasks",
+        "expected_status_code"  :   SUCCESS_STATUS_CODE,
+        "query_string"          :   {'sort_by': 'id'},
+        "expected_data"         :   {"tasks": [{"id": 1,
+                                               "status": "InProgress",
+                                               "title": "Science"
+                                               },
+                                                {"id": 2,
+                                                 "status": "InProgress",
+                                                 "title": "Math"
+                                                }]
+                                    }
+    }
+    TestRequest.get(params)
     
