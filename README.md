@@ -50,8 +50,10 @@ To stop this virtualenv, just type
 > Pass The Token to top right corner in (Authorize) Section -> Now the user is authorized
 
 > Create Task with passing the data in request body
-> Get Task with get Api
-> Get Sorted Tasks with Sort Task Api
+> Get Task with get Api (paginated)
+> Get Task by Id
+> Get Filter Taks with Filter Api
+> Get Sorted Tasks with Sort Task Api (paginated)
 > Update the status of Task
 > Delete The Task
 
