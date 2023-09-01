@@ -15,6 +15,10 @@ class TaskStatus(Enum):
     InProgress = 2
     Completed = 3
 
+class TaskPriority(Enum):
+    Low = 1
+    Medium = 2
+    High = 3
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=True, autoincrement=True)
     title = db.Column(db.String(100), unique=True)
@@ -23,6 +27,7 @@ class Task(db.Model):
     status = db.Column(db.Enum(TaskStatus))
     # status = db.Column(db.String(50))
     due_date = db.Column(db.DateTime)
+    priority = db.Column(db.Enum(TaskPriority))
     __table_args__ = (UniqueConstraint("title", name="title"),)
     
     def __repr__(self) -> str:
