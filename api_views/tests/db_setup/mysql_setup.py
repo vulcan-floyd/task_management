@@ -6,21 +6,6 @@ from extensions import db
 
 import pymysql
 
-# def insertDatabase(file, model):
-#     file_json = json.load(file)
-#     for task in file_json['tasks']:
-#         id = task['id']
-#         title = task['title']
-#         description = task['description']
-#         status = task['status']
-#         due_date = task['due_date']
-#         t = model(id=id,
-#                  title=title,
-#                  description=description,
-#                  status=status,
-#                  due_date=due_date)
-#         db.session.add(t)
-#         db.session.commit()
 
 def mysql_setup():
     Task.query.delete()
