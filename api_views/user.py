@@ -12,9 +12,6 @@ from flasgger.utils import swag_from
 api_user_blueprint = Blueprint('api_user_blueprint', __name__)
 
 
-# @api_user_blueprint.route('/login', methods =['POST'])
-
-
 @swag_from("api_docs/user/home.yml")
 @api_user_blueprint.route('/', methods =['GET'])
 def home():
@@ -23,11 +20,7 @@ def home():
 @swag_from("api_docs/user/login.yml")
 @api_user_blueprint.route('/login', methods =['POST'])
 def login_user():
-#    auth = request.authorization
-#    print(auth.username, auth.password)
-#    if not auth or not auth.username or not auth.password: 
-#        return make_response('could not verify', 401, {'Authentication': 'login required"'})   
-
+    
     content = request.get_json()
     username = content['name']
     password = content['password']
