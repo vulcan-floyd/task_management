@@ -13,9 +13,13 @@ It performs the following activities
 2. User can Create a new Task
 3. User can Update the Task
 4. User can Delete a Task
-5. Order tasks by:
+5. User can assign Priority to the task
+6. Order tasks by:
     Task (Task's title)
     Task (Task's Id)
+7. Filter Tasks by
+    Task's Priority
+    Task's Status
 
 ### Prerequisite
 * Pycharm or similar IDE

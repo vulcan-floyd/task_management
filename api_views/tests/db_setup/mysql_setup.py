@@ -36,11 +36,13 @@ def mysql_setup():
         status = task['status']
         due_date = task['due_date']
         user_id = task['user_id']
+        priority = task['priority']
         t = Task(id=id,
                  title=title,
                  description=description,
                  status=status,
                  user_id=user_id,
+                 priority=priority,
                  due_date=due_date)
         db.session.add(t)
         db.session.commit()

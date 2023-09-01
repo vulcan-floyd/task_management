@@ -10,7 +10,8 @@ from db_setup.mysql_setup import mysql_setup
 @pytest.fixture(scope='module')
 def test_client():
     # os.environ['CONFIG_TYPE'] = 'TestingConfig'
-    application = create_app('testing')
+    # application = create_app('testing')
+    application = create_app()
     application = init_api(application)
     with application.app_context():
         db.create_all()

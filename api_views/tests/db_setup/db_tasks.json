@@ -6,6 +6,7 @@
             "description": "Science Homework",
             "status": "InProgress",
             "user_id": 1,
+            "priority": "Low",
             "due_date": "2023-09-01T10:45:06.655347+05:30"
         },
         {
@@ -14,6 +15,7 @@
             "description": "Math Homework.",
             "status": "InProgress",
             "user_id": 1,
+            "priority": "Medium",
             "due_date": "2023-09-01T10:45:06.655347+05:30"
         },
         {
@@ -22,6 +24,7 @@
             "description": "Algebra Homework.",
             "status": "NotPicked",
             "user_id": 1,
+            "priority": "Low",
             "due_date": "2023-09-01T10:45:06.655347+05:30"
         },
         {
@@ -30,6 +33,7 @@
             "description": "Calculus Homework.",
             "status": "NotPicked",
             "user_id": 1,
+            "priority": "High",
             "due_date": "2023-09-01T10:45:06.655347+05:30"
         },
         {
@@ -38,6 +42,7 @@
             "description": "Geometry Homework.",
             "status": "NotPicked",
             "user_id": 1,
+            "priority": "Low",
             "due_date": "2023-09-01T10:45:06.655347+05:30"
         }
     ]

@@ -6,12 +6,19 @@ security:
 - APIKeyHeader: ['x-access-token']
 parameters:
 - in: "query"
-  name: "status"
+  name: "priority"
   type: "string"
-  enum: ["InProgress", "Completed", "NotPicked"]
+  enum: ["low", "medium", "high"]
   required: "true"
+- in: "query"
+  name: "page"
+  type: "integer"
+- in: "query"
+  name: "count"
+  type: "integer"
 responses:
   200:
     description: "Success"
   404:
     description: "Not Found"
+  
