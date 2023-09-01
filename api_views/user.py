@@ -62,3 +62,17 @@ def get_all_users():
      
        result.append(user_data)  
    return jsonify({'users': result})
+
+
+@swag_from("api_docs/user/users-promote.yml")
+@api_user_blueprint.route('/users/<public_id>', methods =['PUT'])
+def promote_user(public_id):
+    user = User.query.filter_by(public_id=public_id).first()
+   
+    if not user:
+        return jsonify({'message': 'No user Found'})
+    
+    user.admin = 1
+    db.session.commit()
+    
+    return jsonify({'message': 'User has been promoted'})

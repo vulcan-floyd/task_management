@@ -2,6 +2,11 @@ tags:
 - "User"
 produces:
 - "application/json"
+parameters:
+- in: "path"
+  name: "public_id"
+  type: "string"
+  required: "true"
 responses:
   200:
     description: "Success"
