@@ -1,0 +1,44 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Science",
+            "description": "Science Homework",
+            "status": "InProgress",
+            "user_id": 1,
+            "due_date": "2023-09-01T10:45:06.655347+05:30"
+        },
+        {
+            "id": 2,
+            "title": "Math",
+            "description": "Math Homework.",
+            "status": "InProgress",
+            "user_id": 1,
+            "due_date": "2023-09-01T10:45:06.655347+05:30"
+        },
+        {
+            "id": 3,
+            "title": "Algebra",
+            "description": "Algebra Homework.",
+            "status": "NotPicked",
+            "user_id": 1,
+            "due_date": "2023-09-01T10:45:06.655347+05:30"
+        },
+        {
+            "id": 4,
+            "title": "Calculus",
+            "description": "Calculus Homework.",
+            "status": "NotPicked",
+            "user_id": 1,
+            "due_date": "2023-09-01T10:45:06.655347+05:30"
+        },
+        {
+            "id": 5,
+            "title": "Geometry",
+            "description": "Geometry Homework.",
+            "status": "NotPicked",
+            "user_id": 1,
+            "due_date": "2023-09-01T10:45:06.655347+05:30"
+        }
+    ]
+}

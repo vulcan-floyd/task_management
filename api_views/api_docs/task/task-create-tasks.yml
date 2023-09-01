@@ -1,0 +1,31 @@
+tags:
+- "Task"
+produces:
+- "application/json"
+security:
+- APIKeyHeader: ['x-access-token']
+parameters:
+- in: "path"
+  name: "task_id"
+  type: "integer"
+  required: "true"
+- in: "body"
+  name: "content_body"
+  schema:
+    $ref: '#/definitions/request_post_body'
+definitions:
+  request_post_body:
+    type: "object"
+    required:
+      - title
+      - due_date
+    properties:
+      title:
+        type: "string"
+      due_date:
+        type: "datetime"
+      description:
+        type: "string"
+responses:
+  200:
+    description: "Success"

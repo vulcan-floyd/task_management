@@ -1,0 +1,23 @@
+tags:
+- "User"
+produces:
+- "application/json"
+parameters:
+- in: "body"
+  name: "content_body"
+  schema:
+    $ref: '#/definitions/request_user_body'
+definitions:
+  request_user_body:
+    type: "object"
+    required:
+      - name
+      - password
+    properties:
+      name:
+        type: "string"
+      password:
+        type: "string"
+responses:
+  200:
+    description: "Success"

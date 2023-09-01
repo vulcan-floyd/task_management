@@ -1,0 +1,16 @@
+tags:
+- "Task"
+produces:
+- "application/json"
+security:
+- APIKeyHeader: ['x-access-token']
+parameters:
+- in: "query"
+  name: "page"
+  type: "integer"
+- in: "query"
+  name: "count"
+  type: "integer"
+responses:
+  200:
+    description: "Success"
