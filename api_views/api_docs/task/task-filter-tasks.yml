@@ -7,7 +7,8 @@ security:
 parameters:
 - in: "query"
   name: "status"
-  type: "enum"
+  type: "string"
+  enum: ["InProgress", "Completed", "NotPicked"]
   required: "true"
 responses:
   200:
