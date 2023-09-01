@@ -19,7 +19,7 @@ definitions:
       title:
         type: "string"
       due_date:
-        type: "datetime"
+        type: "string"
       description:
         type: "string"
 responses:

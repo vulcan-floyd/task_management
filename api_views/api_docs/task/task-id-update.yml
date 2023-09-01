@@ -9,6 +9,18 @@ parameters:
   name: "task_id"
   type: "integer"
   required: "true"
+- in: "body"
+  name: "content_body"
+  schema:
+    $ref: '#/definitions/request_update_body'
+definitions:
+  request_update_body:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+      due_date:
+        type: "string"
 responses:
   200:
     description: "Success"
