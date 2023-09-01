@@ -31,7 +31,7 @@ def createTask():
     task = create_task(content)
     if task == 'IntegrityError':
         return jsonify(text='Created Task is Already Exist')
-    return jsonify({'status_code': 201, 'data': task.title})
+    return jsonify({'data': task.title})
 
 
 
