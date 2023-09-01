@@ -8,9 +8,9 @@ from config import config
 from extensions import swagger, db
 from flask_migrate import Migrate
 
-def create_app():
+def create_app(config_name):
     application = Flask(__name__)
-    # application.config.from_object(config[config_name])
+    application.config.from_object(config[config_name])
     application.config.from_pyfile(".env", silent=False)
     for i in application.config:
         os.environ[i] = str(application.config[i])
