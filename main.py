@@ -4,19 +4,20 @@ import os
 from flask import Flask, jsonify, request, g
 
 from api_views import blueprints
-# import custom_logger
 from config import config
 from extensions import swagger, db
 from flask_migrate import Migrate
 
-def create_app(config_name):
+def create_app():
     application = Flask(__name__)
-    application.config.from_object(config[config_name])
+    # application.config.from_object(config[config_name])
     application.config.from_pyfile(".env", silent=False)
     for i in application.config:
         os.environ[i] = str(application.config[i])
-        
+    
     db.init_app(application)
+    with application.app_context():
+        db.create_all()
     return application
 
 def init_api(application):
@@ -31,13 +32,6 @@ def init_api(application):
         print(module, blueprint)
         application.register_blueprint(
             getattr(module, blueprint), url_prefix=url_prefix)
-    
-    # @application.before_request
-    # def before_request():
-    #     g.store = request.args.get('store','beauty')
-    #     valid_stores = application.config['VALID_STORES'].split(',')
-    #     if g.store not in valid_stores:
-    #         return jsonify(error=400, text='Invalid store'), 400
         
     @application.errorhandler(404)
     def page_not_found(e):
