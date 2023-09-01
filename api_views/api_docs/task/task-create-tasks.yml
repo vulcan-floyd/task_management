@@ -5,10 +5,6 @@ produces:
 security:
 - APIKeyHeader: ['x-access-token']
 parameters:
-- in: "path"
-  name: "task_id"
-  type: "integer"
-  required: "true"
 - in: "body"
   name: "content_body"
   schema:

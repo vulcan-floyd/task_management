@@ -25,7 +25,7 @@ def create_task(content):
         return task
     except exc.IntegrityError:
         db.session.rollback()
-        return 'Integrity Error'
+        return exc.IntegrityError.__name__
     
 def getTaskById(task_id):
     user_id = g.user_id

@@ -29,7 +29,7 @@ def createTask():
         return jsonify(error=400, text="Please pass the due_date of task"), 400
     
     task = create_task(content)
-    if task == 'Integrity Error':
+    if task == 'IntegrityError':
         return jsonify(text='Created Task is Already Exist')
     return jsonify({'status_code': 201, 'data': task.title})
 

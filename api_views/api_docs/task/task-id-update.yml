@@ -12,3 +12,5 @@ parameters:
 responses:
   200:
     description: "Success"
+  404:
+    description: "Not Found"
