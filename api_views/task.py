@@ -6,7 +6,7 @@ from extensions import db
 from models.model import Task
 from middleware import token_required
 
-from utils.task_feed import create_task, getTaskById, getTask, getFilterTask, update_Task, delete_Task
+from utils.task_feed import create_task, getTaskById, getTask, getFilterTask, update_Task, delete_Task, getSortTask
 
 
 
@@ -79,7 +79,20 @@ def taskFilterView():
         return jsonify(error=404, text='No Task found for given Filter'), 404
     return jsonify({'tasks': data})
 
-
+@swag_from("api_views/api_docs/task/task-sort-tasks.yml")
+@api_task_blueprint.route('/sort/tasks', methods=['GET'])
+@token_required
+def taskSortedView():
+    sort_by = request.args.get('sort_by', 'id')
+    page = int(request.args.get('page', 1))
+    count = int(request.args.get('count', 2))
+    # date = dueDate.split('-')
+    # dueDate = datetime(int(date[0]), int(date[1]),int(date[2]))
+    data = getSortTask(sort_by, page, count)
+    
+    if len(data) == 0:
+        return jsonify(error=404, text='No Task found for given Filter'), 404
+    return jsonify({'tasks': data})
 
 @swag_from("api_views/api_docs/task/task-id-update.yml")
 @api_task_blueprint.route('/<task_id>/update', methods=['PUT'])

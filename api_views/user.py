@@ -28,7 +28,7 @@ def login_user():
     user = User.query.filter_by(name=username).first()
     print(user)
     if check_password_hash(user.password, password):
-        token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=45)}, current_app.config['SECRET_KEY'], "HS256").decode("utf-8")
+        token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=45)}, current_app.config['SECRET_KEY'], "HS256")
  
         return jsonify({'token' : token})
  

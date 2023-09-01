@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import current_app, g
+from flask import current_app, g, abort
 import uuid
 from sqlalchemy import exc
 
@@ -35,7 +35,7 @@ def getTaskById(task_id):
         data['id'] = task.id
         data['title'] = task.title
         data['description'] = task.description
-        # data['status'] = task.status
+        data['status'] = task.status.name
         data['due_date'] = task.due_date
     return data
 
@@ -47,10 +47,31 @@ def getTask(page, count):
         for t in task:
             data = {}
             data['id'] = t.id
-            data['title'] = t.title
+            data['title'] = t.title 
+            data['description'] = t.description
+            data['status'] = t.status.name
+            data['due_date'] = t.due_date
             output.append(data)
+    
     return output
 
+def getSortTask(sort_by, page, count):
+    user_id = g.user_id
+    if sort_by == 'title':
+        tasks = Task.query.order_by(Task.title).paginate(page=page,per_page=count,error_out=False)
+    elif sort_by == 'id':
+        tasks = Task.query.order_by(Task.id).paginate(page=page,per_page=count,error_out=False)
+    
+    output = []
+    if tasks:
+        for t in tasks:
+            data = {}
+            data['id'] = t.id
+            data['title'] = t.title 
+            data['status'] = t.status.name
+            output.append(data)
+    return output
+    
 def getFilterTask(status):
     user_id = g.user_id
     task = Task.query.filter_by(user_id=user_id, status=status).all()
@@ -59,7 +80,8 @@ def getFilterTask(status):
         for t in task:
             data = {}
             data['id'] = t.id
-            data['title'] = t.title
+            data['title'] = t.title 
+            data['status'] = t.status.name
             output.append(data)
     return output
     

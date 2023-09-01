@@ -1,0 +1,21 @@
+tags:
+- "Task"
+produces:
+- "application/json"
+security:
+- APIKeyHeader: ['x-access-token']
+parameters:
+- in: "query"
+  name: "sort_by"
+  type: "string"
+  enum: ["title", "id"]
+  required: "true"
+- in: "query"
+  name: "page"
+  type: "integer"
+- in: "query"
+  name: "count"
+  type: "integer"
+responses:
+  200:
+    description: "Success"
