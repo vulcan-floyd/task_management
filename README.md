@@ -48,6 +48,18 @@ It performs the following activities
 To stop this virtualenv, just type
 > deactivate
 
+### Create Database
+
+> First create task_management database or of your's choice
+> Create Table by below steps - 
+    a. Type python3 on terminal
+    b. from app import application
+    c. from extensions import db
+    d. from models import *
+    e. application.app_context().push()
+    f. db.create_all()
+
+Now User and Task Table are created
 ### To run project
 > ./run_api.sh default
 
