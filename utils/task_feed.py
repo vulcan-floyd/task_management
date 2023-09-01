@@ -11,6 +11,7 @@ def create_task(content):
     title = content['title']
     description = content['description']
     due_date = content['due_date']
+    priority = content['priority']
     date = due_date.split('-')
     due_date = datetime(int(date[0]), int(date[1]),int(date[2]))
     user_id = g.user_id
@@ -19,7 +20,8 @@ def create_task(content):
                     description=description,
                     status='NotPicked',
                     user_id=user_id,
-                    due_date=due_date)
+                    due_date=due_date,
+                    priority=priority)
         db.session.add(task)
         db.session.commit()
         return task
@@ -37,6 +39,7 @@ def getTaskById(task_id):
         data['description'] = task.description
         data['status'] = task.status.name
         data['due_date'] = task.due_date
+        data['priority'] = task.priority.name
     return data
 
 def getTask(page, count):
@@ -51,6 +54,7 @@ def getTask(page, count):
             data['description'] = t.description
             data['status'] = t.status.name
             data['due_date'] = t.due_date
+            data['priority'] = t.priority.name
             output.append(data)
     
     return output
@@ -69,6 +73,7 @@ def getSortTask(sort_by, page, count):
             data['id'] = t.id
             data['title'] = t.title 
             data['status'] = t.status.name
+            data['priority'] = t.priority.name
             output.append(data)
     return output
     
@@ -82,6 +87,21 @@ def getFilterTask(status):
             data['id'] = t.id
             data['title'] = t.title 
             data['status'] = t.status.name
+            data['priority'] = t.priority.name
+            output.append(data)
+    return output
+
+def getFilterPriorityTask(priority, page, count):
+    user_id = g.user_id
+    task = Task.query.filter_by(user_id=user_id, priority=priority).paginate(page=page,per_page=count,error_out=False)
+    output = []
+    if task:
+        for t in task:
+            data = {}
+            data['id'] = t.id
+            data['title'] = t.title 
+            data['status'] = t.status.name
+            data['priority'] = t.priority.name
             output.append(data)
     return output
     
@@ -96,6 +116,9 @@ def update_Task(content, task_id):
     if 'due_date' in content:
         due_date = content['due_date']
         task.due_date = due_date
+    if 'priority' in content:
+        priority = content['priority']
+        task.priority = priority
     db.session.commit()
     return True
 
