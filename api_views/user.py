@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from extensions import db
 from models.model import User
 from flasgger.utils import swag_from
+from sqlalchemy import exc
 
 api_user_blueprint = Blueprint('api_user_blueprint', __name__)
 
@@ -24,10 +25,10 @@ def login_user():
     content = request.get_json()
     username = content['name']
     password = content['password']
+    email = content['email']
  
     user = User.query.filter_by(name=username).first()
-    print(user)
-    if check_password_hash(user.password, password):
+    if email == user.email and check_password_hash(user.password, password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=45)}, current_app.config['SECRET_KEY'], "HS256")
  
         return jsonify({'token' : token})
@@ -39,13 +40,18 @@ def login_user():
 @api_user_blueprint.route('/signup', methods =['POST'])
 def signup_user(): 
     data = request.get_json() 
+    email = data['email']
     hashed_password = generate_password_hash(data['password'], method='sha256')
- 
-    new_user = User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, admin=False)
-    db.session.add(new_user) 
-    db.session.commit()
-    return jsonify({'message': 'registered successfully'})
     
+    try:
+        new_user = User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, email=email,admin=False)
+        db.session.add(new_user) 
+        db.session.commit()
+        return jsonify({'message': 'registered successfully'})
+    except exc.IntegrityError:
+        return jsonify({'message': 'User already exist'})
+    except Exception as e:
+        return jsonify({'message': e})
     
 
 @swag_from("api_docs/user/users.yml")

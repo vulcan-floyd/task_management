@@ -110,17 +110,22 @@ def update_Task(content, task_id):
     task = Task.query.filter_by(id=task_id, user_id=user_id).first()
     if not task:
         return False
+    
+    message = []
     if 'status' in content:
         status = content['status']
         task.status = status
+        message.append('status')
     if 'due_date' in content:
         due_date = content['due_date']
         task.due_date = due_date
+        message.append('due_date')
     if 'priority' in content:
         priority = content['priority']
         task.priority = priority
+        message.append('priority')
     db.session.commit()
-    return True
+    return message
 
 def delete_Task(task_id):
     user_id = g.user_id

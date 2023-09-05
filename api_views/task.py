@@ -115,11 +115,11 @@ def taskSortedView():
 def updateTask(task_id):
     content = request.get_json()
     
-    task = update_Task(content, task_id)
+    message = update_Task(content, task_id)
     
-    if not task:
+    if not message:
         return jsonify(error=404, text='No Task Found'), 404
-    return jsonify({'text': "Task has been Updated"})
+    return jsonify({'text': 'Task has been updated'})
 
 
 

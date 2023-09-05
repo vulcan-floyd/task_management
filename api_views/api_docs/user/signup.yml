@@ -13,10 +13,13 @@ definitions:
     required:
       - name
       - password
+      - email
     properties:
       name:
         type: "string"
       password:
+        type: "string"
+      email:
         type: "string"
 responses:
   200:
