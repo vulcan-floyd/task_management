@@ -6,9 +6,11 @@ from extensions import db
 class User(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    public_id = db.Column(db.String(100), unique=True)
+   email = db.Column(db.String(50), unique=True, nullable=False)
    name = db.Column(db.String(50))
    password = db.Column(db.String(100))
    admin = db.Column(db.Boolean)
+#    __table_args__ = (UniqueConstraint("name", name="name"),)
 
 class TaskStatus(Enum):
     NotPicked = 1
